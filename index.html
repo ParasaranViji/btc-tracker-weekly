@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTC Weekly Price Movement & News</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="heading-row">
+        <h1 class="heading" id="mainHeading">Loading past year data...</h1>
+        <span class="provider-badge" id="providerBadge"></span>
+      </div>
+
+      <div class="stats" id="statsDiv" style="display: none">
+        <div class="stat">
+          <p class="stat-label">Avg Weekly Move</p>
+          <p class="stat-value" id="avgMove">-</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Median Weekly Move</p>
+          <p class="stat-value" id="medMove">-</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Largest Weekly Move</p>
+          <p class="stat-value" id="maxMove">-</p>
+        </div>
+        <div class="stat">
+          <p class="stat-label">Avg Daily Price Range</p>
+          <p class="stat-value" id="avgDailyRangeStat">-</p>
+        </div>
+      </div>
+
+      <div class="chart-wrapper" id="chartContainer">
+        <div class="chart-toolbar">
+          <p class="chart-subtitle" id="chartSubtitle">
+            Showing Weekly Net Move ($) • Hover any bar for High–Low range &
+            daily spread
+          </p>
+          <div class="mode-toggle">
+            <button
+              class="mode-btn active"
+              id="btnNetMode"
+              onclick="switchChartMode('net')"
+            >
+              Net Change ($)
+            </button>
+            <button
+              class="mode-btn"
+              id="btnRangeMode"
+              onclick="switchChartMode('range')"
+            >
+              Price Range (High–Low)
+            </button>
+          </div>
+        </div>
+        <div class="chart-box">
+          <canvas id="btcChart"></canvas>
+        </div>
+      </div>
+
+      <p class="note" id="dynamicNote" style="display: none"></p>
+
+      <div class="news-header-row">
+        <h2 class="news-header">Latest Bitcoin News</h2>
+        <div class="news-controls">
+          <span class="news-status" id="newsStatus"
+            >Checking for updates...</span
+          >
+          <button
+            class="refresh-btn"
+            id="refreshNewsBtn"
+            onclick="loadNewsData(true)"
+            title="Refresh latest Bitcoin news"
+          >
+            <svg
+              class="refresh-icon"
+              id="refreshIcon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 2v6h-6"></path>
+              <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
+              <path d="M3 22v-6h6"></path>
+              <path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path>
+            </svg>
+            <span id="refreshBtnText">Refresh</span>
+          </button>
+        </div>
+      </div>
+      <div class="news-grid" id="newsGrid"></div>
+    </div>
+    <!-- External Script -->
+    <script src="assets/script/app.js"></script>
+  </body>
+</html>
